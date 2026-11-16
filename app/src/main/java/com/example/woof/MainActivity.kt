@@ -63,9 +63,14 @@ class MainActivity : ComponentActivity() {
  */
 @Composable
 fun WoofApp() {
-    LazyColumn {
-        items(dogs) {
-            DogItem(dog = it)
+    Scaffold { it ->
+        LazyColumn(contentPadding = it) {
+            items(dogs) {
+                DogItem(
+                    dog = it,
+                    modifier = Modifier.padding(dimensionResource(R.dimen.padding_small))
+                )
+            }
         }
     }
 }
@@ -77,17 +82,16 @@ fun WoofApp() {
  * @param modifier modifiers to set to this composable
  */
 @Composable
-fun DogItem(
-    dog: Dog,
-    modifier: Modifier = Modifier
-) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(dimensionResource(R.dimen.padding_small))
-    ) {
-        DogIcon(dog.imageResourceId)
-        DogInformation(dog.name, dog.age)
+fun DogItem(dog: Dog, modifier: Modifier = Modifier) {
+    Card(modifier = modifier) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensionResource(id = R.dimen.padding_small))
+        ) {
+            DogIcon(dog.imageResourceId)
+            DogInformation(dog.name, dog.age)
+        }
     }
 }
 
