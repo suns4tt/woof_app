@@ -59,6 +59,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.spring
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -106,9 +108,10 @@ fun WoofApp() {
 @Composable
 fun DogItem(dog: Dog, modifier: Modifier = Modifier) {
     var expanded by remember { mutableStateOf(false) }
-
     Card(modifier = modifier) {
-        Column {
+        Column(
+            modifier = Modifier.animateContentSize(animationSpec = spring())
+        ) {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -134,8 +137,10 @@ fun DogItem(dog: Dog, modifier: Modifier = Modifier) {
                 )
             }
         }
-
     }
+
+
+
 }
 
 @Composable
