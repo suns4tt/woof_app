@@ -122,16 +122,19 @@ fun DogItem(dog: Dog, modifier: Modifier = Modifier) {
                     onClick = { expanded = !expanded }
                 )
             }
-            DogHobby(
-                dog.hobbies,
-                modifier = Modifier.padding(
-                    start = dimensionResource(R.dimen.padding_medium),
-                    top = dimensionResource(R.dimen.padding_small),
-                    end = dimensionResource(R.dimen.padding_medium),
-                    bottom = dimensionResource(R.dimen.padding_medium)
+            if (expanded) {
+                DogHobby(
+                    dog.hobbies,
+                    modifier = Modifier.padding(
+                        start = dimensionResource(R.dimen.padding_medium),
+                        top = dimensionResource(R.dimen.padding_small),
+                        end = dimensionResource(R.dimen.padding_medium),
+                        bottom = dimensionResource(R.dimen.padding_medium)
+                    )
                 )
-            )
+            }
         }
+
     }
 }
 
